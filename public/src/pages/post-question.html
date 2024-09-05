@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Code Helper</title>
+    <link rel="stylesheet" href="../../src/css/post-question.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+
+<body>
+    <!-- Header Section -->
+    <header class="header">
+        <div class="container">
+            <div class="top-nav">
+                <div class="logo">
+                    <i class="fas fa-laptop-code logo-icon"></i>
+                    <span class="logo-title">CodeHelper</span>
+                </div>
+                <div class="search-bar">
+                    <input type="text" placeholder="Search problems or solutions...">
+                </div>
+
+            </div>
+            <nav class="nav">
+                <a href="#" class="active nav-option">
+                    <i class="fas fa-home"></i>
+                    <p>Home</p>
+                </a>
+                <a href="#" class="nav-option">
+                    <i class="fas fa-exclamation-circle"></i>
+                    <p>Problems</p>
+
+                </a>
+                <a href="#" class="nav-option">
+                    <i class="fas fa-lightbulb"></i>
+                    <p>Solution</p>
+
+                </a>
+                <a href="#" class="nav-option">
+                    <i class="fas fa-user"></i>
+
+                    <p>Shafaat Hussain</p>
+
+                </a>
+            </nav>
+        </div>
+    </header>
+
+    <section class="form">
+
+        <div class="container">
+            <h1>Tell us about your problem.</h1>
+
+            <form id="form">
+
+                <div class="form-element">
+                    <label for="question-title">Give a short title to your question </label>
+                    <div name="question-title" contenteditable="true" id="question-title" placeholder="Title" rows="1"
+                        required></div>
+                </div>
+
+                <div class="form-element">
+                    <label for="description">Describe your question in detail. Feel free to add some test cases and
+                        their outputs in your question.</label>
+
+                    <div class="tools">
+                        <div class="tool"><i class="fas fa-image"></i></div>
+                        <div class="tool"><i class="fas fa-link"></i></div>
+                    </div>
+                    <div name="description" id="description" contenteditable="true"
+                        placeholder="Describe your question." rows="10" required></div>
+                </div>
+                <div class="error-message hide ">
+                    <i class="fas fa-times-circle"></i>
+                    <span class="error-message-content"></span>
+                </div>
+                <div class="success-message hide">
+                    <i class="fas fa-check-circle"></i>
+                    <span class="success-message-content"></span>
+                </div>
+                <div class="info">
+                    By posting this question you give your consent to share your email address and other legal account
+                    info with other users.
+                </div>
+        </div>
+
+
+
+        <div class="form-element">
+            <button type="submit" class="question-submit"><i class="far fa-paper-plane"></i> Post</button>
+        </div>
+
+        </form>
+        </div>
+
+    </section>
+</body>
+
+<script src="../../src/js/post-question.js"></script>
+
+</html>

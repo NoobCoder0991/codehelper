@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Code Helper</title>
+    <link rel="stylesheet" href="../../src/css/index.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+
+<body>
+    <!-- Header Section -->
+    <header class="header">
+        <div class="container">
+            <div class="top-nav">
+                <div class="logo">
+                    <i class="fas fa-laptop-code logo-icon"></i>
+                    <span class="logo-title">CodeHelper</span>
+                </div>
+                <div class="search-bar">
+                    <input type="text" placeholder="Search problems or solutions...">
+                </div>
+
+            </div>
+            <nav class="nav">
+                <a href="#" class="active nav-option">
+                    <i class="fas fa-home"></i>
+                    <p>Home</p>
+                </a>
+                <a href="#" class="nav-option">
+                    <i class="fas fa-exclamation-circle"></i>
+                    <p>Problems</p>
+
+                </a>
+                <a href="#" class="nav-option">
+                    <i class="fas fa-lightbulb"></i>
+                    <p>Solution</p>
+
+                </a>
+                <a href="#" class="nav-option">
+                    <i class="fas fa-user"></i>
+
+                    <span>
+                        <span class="first-name"></span>
+                        <span class="last-name"></span>
+                    </span>
+
+                </a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1>Solve Coding Problems with the Community</h1>
+            <p>Share your problems, get solutions, and improve your skills.</p>
+            <div class="cta-buttons">
+                <a href="/post-question" class="btn">Post a Problem</a>
+                <a href="#" class="btn btn-secondary">Browse Problems</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Problems Section -->
+
+    <div class="container">
+        <section class="featured-problems">
+            <div class="container">
+                <h2>Featured Problems</h2>
+
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Title</th>
+                            <th>Status</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody id="freatured-questions-table-body">
+                        <tr>
+                            <td class="question-title">Max element of an array</td>
+                            <td>
+                                <i class="fas fa-check-circle solved"></i>
+                                Solved
+
+                            </td>
+
+                            <td>
+                                <action>Answer</action>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="question-title">House Robber</td>
+                            <td>
+                                <i class="fas fa-question-circle pending"></i>
+                                Pending
+
+                            </td>
+
+                            <td>
+                                <action>Answer</action>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+
+            </div>
+        </section>
+
+    </div>
+    <div class="container">
+        <section class="featured-problems">
+            <div class="container">
+                <h2>My Problems</h2>
+
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Title</th>
+                            <th>Status</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody id="my-questions-table-body">
+
+
+                    </tbody>
+                </table>
+
+                <div id="no-problems" class="hide">
+                    <div>
+                        <i class="fas fa-search-minus"></i>
+                        <span>You haven't asked any question.</span>
+                    </div>
+                    <button class="button">Ask a question</button>
+                </div>
+
+            </div>
+        </section>
+
+    </div>
+
+
+
+    <div class="container">
+
+        <div class="my-solutions">
+            <div class="container">
+
+                <h2 style="margin-bottom: 20px;">My Solutions</h2>
+
+                <table>
+                    <thead>
+                    </thead>
+                    <tbody id="my-solutions-table-body">
+
+                        <!-- <tr>
+                            <td>Count the number of good integers.</td>
+                            <td>10 <i class="fas fa-thumbs-up"></i></td>
+                            <td>2 <i class="fas fa-thumbs-down"></i></td>
+                            <td>View</td>
+
+                        </tr> -->
+                    </tbody>
+                </table>
+
+                <div id="no-solutions" class="hide">
+                    <div>
+                        <i class="fas fa-search-minus"></i>
+                        <span>You haven't answered any questions.</span>
+                    </div>
+                    <button class="button">Get Started</button>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+
+        <section class="my-stats">
+
+            <div class="container">
+                <h2>My stats</h2>
+                <p>Question you have asked and answered will appear here.</p>
+                <table class="my-stats-table">
+                    <thead>
+                        <tr>
+                            <th>Asked</th>
+                            <th>Answered</th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td id="my-questions-count">5</td>
+                            <td id="my-solutions-count">1</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+        </section>
+
+    </div>
+
+
+
+
+    <!-- Latest Solutions Section -->
+    <!-- Footer Section -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 Code Helper. All rights reserved.</p>
+            <div class="social-icons">
+                <a href="#">Facebook</a>
+                <a href="#">Twitter</a>
+                <a href="#">LinkedIn</a>
+            </div>
+        </div>
+    </footer>
+</body>
+
+<script src="../../src/js/components.js"></script>
+<script src="../../src/js/index.js"></script>
+
+</html>

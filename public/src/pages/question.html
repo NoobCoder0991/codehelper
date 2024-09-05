@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Code Helper</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+
+<style>
+    :root {
+        --accent-color: #fd7e14;
+        --dim-color: rgb(158, 155, 155);
+        --sharp-color: #000;
+    }
+
+    /* Basic Reset */
+
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: Arial, sans-serif;
+    }
+
+    body {
+        background-color: #f4f4f4;
+    }
+
+    /* Container for fixed width */
+    .container {
+        max-width: 1000px;
+        width: 100%;
+        padding: 20px;
+        margin: 0 auto;
+    }
+
+
+    /* Header Section */
+    .header {
+        background-color: #333;
+        color: white;
+        /* padding: 15px 0; */
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+
+
+    .header .logo {
+        font-size: 24px;
+    }
+
+    .logo-icon {
+        color: #fd7e14;
+    }
+
+
+
+
+
+
+
+
+    .button {
+        padding: 10px 20px;
+        margin-right: 10px;
+        text-decoration: none;
+        color: white;
+        border-radius: 4px;
+        cursor: pointer;
+        background-color: #333;
+        border: none;
+        box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.1);
+
+    }
+
+
+
+    .featured-problems h2 {
+        margin-bottom: 20px;
+    }
+
+
+    /* Footer Section */
+    .footer {
+        background-color: #333;
+        color: white;
+        padding: 20px 0;
+        text-align: center;
+    }
+
+    .footer .social-icons a {
+        color: white;
+        margin: 0 10px;
+        text-decoration: none;
+    }
+
+    .my-stats,
+    .my-solutions,
+    .featured-problems,
+    .solution-container {
+        box-shadow: 0px 5px 8px #aaa;
+    }
+
+    /* Basic table styling */
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 20px 0;
+        font-size: 16px;
+        text-align: left;
+    }
+
+    /* Table header styling */
+    thead {
+        /* Accent color */
+        /* background-color: var(--accent-color); */
+    }
+
+    thead th {
+        padding: 12px 15px;
+    }
+
+    /* Table body styling */
+    tbody tr:nth-child(even) {
+        background-color: #f4f4f4;
+        /* Light gray background for even rows */
+    }
+
+    tbody tr:nth-child(odd) {
+        background-color: #ece4e4;
+        /* White background for odd rows */
+    }
+
+    tbody td {
+        padding: 12px 15px;
+        /* border: 1px solid #ddd; */
+        /* Light gray border */
+    }
+
+    /* Table border styling */
+
+
+
+
+    .question-title {
+        font-weight: bold;
+    }
+
+    .solution {
+        display: flex;
+        margin: 10px 0px;
+    }
+
+    .solution>div {
+        margin-right: 10px;
+    }
+
+    .solution-options {
+        display: flex;
+        align-items: center;
+        font-size: large;
+        position: relative;
+    }
+
+    .solution-option {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-right: 20px;
+        cursor: pointer;
+        padding: 5px;
+        color: #333;
+    }
+
+    .solution-option>div {
+        margin-right: 5px;
+    }
+
+    .write-solution {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 20px 0;
+        justify-self: center;
+    }
+
+    special {
+        background-color: #666;
+        color: white;
+        padding: 2px 5px;
+        border-radius: 4px;
+    }
+
+    .solution-header,
+    .question-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .author {
+        font-weight: bold;
+        text-decoration: underline;
+    }
+
+    .more-solutions {
+        position: absolute;
+        padding: 7px 20px;
+        display: flex;
+        right: 0;
+    }
+
+    @media screen and (max-width:500px) {
+        .nav-option {
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .logo-title {
+            display: none;
+        }
+
+    }
+</style>
+
+<body>
+    <!-- Header Section -->
+    <header class="header">
+        <div class="container">
+            <div class="top-nav">
+                <div class="logo">
+                    <i class="fas fa-laptop-code logo-icon"></i>
+                    <span class="logo-title">CodeHelper</span>
+                </div>
+
+
+            </div>
+
+        </div>
+    </header>
+
+
+
+    <!-- Featured Problems Section -->
+
+    <div class="container">
+        <section class="featured-problems">
+            <div class="container">
+                <div class="question-header">
+                    <h2 class="question-title">102 - Maximum element of an array</h2>
+                    <div class="author" id="question-author">
+                        Shafaat Hussain
+                    </div>
+                </div>
+                <span class="question">
+                    Given an array <special>nums</special> of length <special>size</special>, find the maximum element
+                    of the array.
+                </span>
+
+
+            </div>
+        </section>
+
+    </div>
+
+
+    <div class="container">
+
+        <div class="my-solutions">
+            <!-- <div class="container solution-container">
+
+                <div class="solution-header">
+                    <h2 class="title">Top solution</h2>
+                    <div class="author">Shafaat Hussain</div>
+                </div>
+
+                <span class=" solution">
+                    Start with the first element of the array as the maximum.
+                    Iterate over it and if an element of the array is larger than the maximum,
+                    then set maximum as equal to the current element.
+                </span>
+
+                <div class="solution-options">
+                    <div class="solution-option">
+                        <div class="fas fa-thumbs-up"></div>
+                        <div class="count">20</div>
+                    </div>
+                    <div class="solution-option">
+
+                        <div class="fas fa-thumbs-down"></div>
+                        <div class="count">20</div>
+                    </div>
+                    <div class="solution-option">
+
+                        <div class="fa-solid fa-download"></div>
+                    </div>
+                    <div class="more-solutions button">
+                        <i class="fas fa-solid fa-chevron-right"></i>
+                    </div>
+                </div>
+
+            </div> -->
+
+        </div>
+
+    </div>
+
+    <div class=" write-solution">
+        <button class="button write-solution-button">Write Solution</button>
+    </div>
+
+    <!-- Latest Solutions Section -->
+    <!-- Footer Section -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 Code Helper. All rights reserved.</p>
+            <div class="social-icons">
+                <a href="#">Facebook</a>
+                <a href="#">Twitter</a>
+                <a href="#">LinkedIn</a>
+            </div>
+        </div>
+    </footer>
+</body>
+
+<script src="../../src/js/components.js"></script>
+<script src="../../src/js/utilities.js"></script>
+<script>
+
+    const url = window.location.href;
+    const parts = url.split('/');
+    const questionId = parts[parts.length - 1];
+
+    try {
+
+        sendPostRequest('/fetch-question', { questionId })
+            .then(data => {
+
+                if (data.ok) {
+
+                    const questionDetails = data.questionDetails;
+                    console.log("Question details", questionDetails)
+                    const title = questionDetails.title;
+                    const description = questionDetails.description;
+                    const author = questionDetails.author;
+
+                    const topSolution = questionDetails.topSolution;
+
+                    document.getElementsByClassName("question-title")[0].textContent = title;
+                    document.getElementById('question-author').textContent = author;
+                    document.getElementsByClassName('question')[0].innerHTML = description;
+
+                    if (topSolution) {
+                        const topSolutionContainer = createSolutionContainer(topSolution);
+                        document.getElementsByClassName("my-solutions")[0].appendChild(topSolutionContainer);
+
+                    }
+                }
+                else {
+                    console.error(data.errMessage)
+                }
+            })
+    } catch (error) {
+
+        console.error(error);
+
+    }
+
+    const writeSolutionButton = document.getElementsByClassName('write-solution-button')[0];
+    writeSolutionButton.addEventListener('click', e => {
+        window.location.href = "/answer-question/id/" + questionId;
+    })
+</script>
+
+</html>
