@@ -79,9 +79,9 @@ function createSolutionContainer(solution) {
     header.appendChild(title);
     header.appendChild(author);
 
-    const solutionContent = document.createElement('span');
+    const solutionContent = document.createElement('div');
     solutionContent.className = 'solution';
-    solutionContent.textContent = solution.solution;
+    solutionContent.innerHTML = processText(solution.solution);
 
     const options = document.createElement('div');
     options.className = 'solution-options';
@@ -116,3 +116,6 @@ function createSolutionContainer(solution) {
 }
 
 
+function highlightCode(code) {
+    return hljs.highlightAuto(code)
+}

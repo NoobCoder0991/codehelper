@@ -355,7 +355,7 @@ app.post("/post-solution", async (req, res) => {
 
         }
         else {
-            res.status(404).send({ ok: false, errMessage: "User not found" });
+            res.send({ ok: false, errMessage: "User not found" });
         }
 
     } catch (error) {

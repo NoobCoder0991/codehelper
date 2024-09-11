@@ -6,9 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Code Helper</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/default.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
 </head>
 
 <style>
+    @import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@300..700&display=swap');
+
     :root {
         --accent-color: #fd7e14;
         --dim-color: rgb(158, 155, 155);
@@ -20,8 +24,30 @@
     * {
         margin: 0;
         padding: 0;
+        line-height: 1.2;
         box-sizing: border-box;
+    }
+
+    a {
+        text-decoration: none;
+        font-weight: bold;
+        color: #fd7e14;
+    }
+
+    a:hover {
+        text-decoration: underline;
+    }
+
+    body {
+
         font-family: Arial, sans-serif;
+    }
+
+    pre,
+    code {
+        font-family: "Fira Code", monospace;
+        font-optical-sizing: auto;
+
     }
 
     body {
@@ -151,8 +177,9 @@
     }
 
     .solution {
-        display: flex;
-        margin: 10px 0px;
+        margin: 20px 0px;
+        max-height: 400px;
+        overflow: auto;
     }
 
     .solution>div {
@@ -189,9 +216,13 @@
     }
 
     special {
+        display: inline-block;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
         background-color: #666;
         color: white;
-        padding: 2px 5px;
+        padding: 0px 5px;
         border-radius: 4px;
     }
 
@@ -271,39 +302,6 @@
     <div class="container">
 
         <div class="my-solutions">
-            <!-- <div class="container solution-container">
-
-                <div class="solution-header">
-                    <h2 class="title">Top solution</h2>
-                    <div class="author">Shafaat Hussain</div>
-                </div>
-
-                <span class=" solution">
-                    Start with the first element of the array as the maximum.
-                    Iterate over it and if an element of the array is larger than the maximum,
-                    then set maximum as equal to the current element.
-                </span>
-
-                <div class="solution-options">
-                    <div class="solution-option">
-                        <div class="fas fa-thumbs-up"></div>
-                        <div class="count">20</div>
-                    </div>
-                    <div class="solution-option">
-
-                        <div class="fas fa-thumbs-down"></div>
-                        <div class="count">20</div>
-                    </div>
-                    <div class="solution-option">
-
-                        <div class="fa-solid fa-download"></div>
-                    </div>
-                    <div class="more-solutions button">
-                        <i class="fas fa-solid fa-chevron-right"></i>
-                    </div>
-                </div>
-
-            </div> -->
 
         </div>
 
@@ -352,7 +350,7 @@
 
                     document.getElementsByClassName("question-title")[0].textContent = title;
                     document.getElementById('question-author').textContent = author;
-                    document.getElementsByClassName('question')[0].innerHTML = description;
+                    document.getElementsByClassName('question')[0].innerHTML = processText(description);
 
                     if (topSolution) {
                         const topSolutionContainer = createSolutionContainer(topSolution);

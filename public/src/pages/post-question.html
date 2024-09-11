@@ -65,10 +65,41 @@
                     <label for="description">Describe your question in detail. Feel free to add some test cases and
                         their outputs in your question.</label>
 
-                    <div class="tools">
-                        <div class="tool"><i class="fas fa-image"></i></div>
-                        <div class="tool"><i class="fas fa-link"></i></div>
+
+                    <div class="editor-tools">
+                        <button type="button" class="editor-tool" onclick="insertSpecial('**Bold**',2,6 )">
+                            <i class="fas fa-bold"></i>
+                        </button>
+                        <button type="button" class="editor-tool" onclick="insertSpecial('*Italic*',1,7)">
+                            <i class="fas fa-italic"></i>
+
+                        </button>
+                        <button type="button" class="editor-tool" onclick="insertSpecial('__Underline__',2,11)">
+                            <i class="fas fa-underline"></i>
+
+                        </button>
+                        <button type="button" class="editor-tool" onclick="insertSpecial('```Code```',4,8)">
+                            <i class="fas fa-code"></i>
+
+                        </button>
+                        <button type="button" class="editor-tool" onclick="insertSpecial('[](Link)',3,7)">
+                            <i class="fas fa-link"></i>
+
+                        </button>
+                        <button type="button" class="editor-tool" onclick="insertSpecial('@@Special@@',2,9)">
+                            special
+
+                        </button>
+                        <button type="button" class="editor-tool">
+                            <i class="fas fa-image"></i>
+
+                        </button>
+                        <button type="button" class="editor-tool instruction-tool">
+                            <i class="fas fa-lightbulb"></i>
+
+                        </button>
                     </div>
+
                     <div name="description" id="description" contenteditable="true"
                         placeholder="Describe your question." rows="10" required></div>
                 </div>
@@ -97,7 +128,8 @@
 
     </section>
 </body>
-
+<script src="../../src/js/components.js"></script>
+<script src="../../src/js/utilities.js"></script>
 <script src="../../src/js/post-question.js"></script>
 
 </html>

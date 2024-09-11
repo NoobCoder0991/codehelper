@@ -181,26 +181,22 @@ label {
     font-size: small;
 }
 
-.tools {
+.editor-tools {
     display: flex;
-    padding: 5px;
+    padding: 10px;
+    position: relative;
 }
 
-.tool {
+.editor-tool {
+    margin-right: 20px;
     padding: 5px 10px;
-    margin: 0 2px;
+    border: none;
     cursor: pointer;
-    transition: ease 0.1s;
+    transition: background 0.2s ease;
 }
 
-.tool:hover {
-    background-color: #333;
-    color: white;
-
-}
-
-.active-tool {
-    background-color: #333;
+.editor-tool:hover {
+    background-color: #aaa;
     color: white;
 }
 

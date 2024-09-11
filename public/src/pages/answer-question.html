@@ -5,6 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Code Helper</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/default.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 
@@ -21,11 +23,18 @@
         margin: 0;
         padding: 0;
         box-sizing: border-box;
-        font-family: Arial, sans-serif;
     }
 
     body {
         background-color: #f4f4f4;
+        font-family: Arial, sans-serif;
+    }
+
+    pre,
+    code {
+        font-family: "Fira Code", monospace;
+        font-optical-sizing: auto;
+
     }
 
     /* Container for fixed width */
@@ -223,7 +232,15 @@
 
     .editor-tool {
         margin-right: 20px;
+        padding: 5px 10px;
+        border: none;
         cursor: pointer;
+        transition: background 0.2s ease;
+    }
+
+    .editor-tool:hover {
+        background-color: #aaa;
+        color: white;
     }
 
     .instruction-tool {
@@ -245,6 +262,26 @@
         justify-content: center;
         align-items: center;
         margin: 20px 0;
+    }
+
+    .error-message {
+        color: red;
+        margin: 5px;
+        font-weight: bold;
+    }
+
+    .error-message.hide {
+        display: none;
+    }
+
+    .success-message {
+        color: #4fcd28;
+        font-weight: bold;
+        margin: 5px;
+    }
+
+    .success-message.hide {
+        display: none;
     }
 
     @media screen and (max-width:500px) {
@@ -305,37 +342,49 @@
 
         <div class="editor">
             <div class="editor-tools">
-                <div class="editor-tool">
+                <button class="editor-tool" onclick="insertSpecial('**Bold**',2,6 )">
                     <i class="fas fa-bold"></i>
-                </div>
-                <div class="editor-tool">
+                </button>
+                <button class="editor-tool" onclick="insertSpecial('*Italic*',1,7)">
                     <i class="fas fa-italic"></i>
 
-                </div>
-                <div class="editor-tool">
+                </button>
+                <button class="editor-tool" onclick="insertSpecial('__Underline__',2,11)">
                     <i class="fas fa-underline"></i>
 
-                </div>
-                <div class="editor-tool">
+                </button>
+                <button class="editor-tool" onclick="insertSpecial('```Code```',3,7)">
                     <i class="fas fa-code"></i>
 
-                </div>
-                <div class="editor-tool">
-                    <i class="fas fa-image"></i>
-
-                </div>
-                <div class="editor-tool">
+                </button>
+                <button class="editor-tool" onclick="insertSpecial('[](Link)',3,7)">
                     <i class="fas fa-link"></i>
 
-                </div>
-                <div class="editor-tool instruction-tool">
+                </button>
+                <button class="editor-tool" onclick="insertSpecial('@@Special@@',2,9)">
+                    special
+
+                </button>
+                <button class="editor-tool">
+                    <i class="fas fa-image"></i>
+
+                </button>
+                <button class="editor-tool instruction-tool">
                     <i class="fas fa-lightbulb"></i>
 
-                </div>
+                </button>
             </div>
 
             <div class="editor-content" contenteditable="true">
             </div>
+        </div>
+        <div class="error-message hide">
+            <i class="fas fa-times-circle"></i>
+            <span class="error-message-content"></span>
+        </div>
+        <div class="success-message hide">
+            <i class="fas fa-check-circle"></i>
+            <span class="success-message-content"></span>
         </div>
 
 
@@ -381,9 +430,10 @@
                 if (data.ok) {
 
                     const questionDetails = data.questionDetails;
+                    console.log(questionDetails)
                     document.getElementsByClassName("question-title")[0].textContent = questionDetails.title;
                     document.getElementById('question-author').textContent = questionDetails.author;
-                    document.getElementsByClassName('question')[0].innerHTML = questionDetails.description;
+                    document.getElementsByClassName('question')[0].innerHTML = processText(questionDetails.description);
                     submitButton.addEventListener("click", async (event) => {
 
                         const solution = document.getElementsByClassName("editor-content")[0].innerText.trim();
@@ -392,9 +442,11 @@
                             try {
                                 const response = await sendPostRequest("/post-solution", { questionId, solution });
                                 if (response.ok) {
+                                    showSuccessMessage("Your solution was successfully posted.")
                                 }
                                 else {
                                     console.error(response.errMessage)
+                                    showErrorMessage(response.errMessage)
                                 }
 
                             } catch (error) {
@@ -403,16 +455,22 @@
                             }
 
                         }
+                        else {
+
+                            showErrorMessage("Solution can not be empty");
+                        }
                     })
 
                 }
                 else {
                     console.error(data.errMessage);
+                    showErrorMessage(data.errMessage);
                 }
             })
 
     } catch (error) {
         console.error(error);
+        showErrorMessage(error);
 
     }
 
