@@ -354,18 +354,18 @@ tbody td {
     margin: 10px;
 }
 
-#no-problems {
+#no-questions {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
 }
 
-#no-problems.hide {
+#no-questions.hide {
     display: none;
 }
 
-#no-problems>div {
+#no-questions>div {
     margin: 10px;
 }
 
