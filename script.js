@@ -12,6 +12,7 @@ const { getgid } = require('process');
 const cookieParser = require("cookie-parser");
 const { Timestamp, ObjectId } = require('mongodb');
 const { get } = require('http');
+const { timeStamp } = require('console');
 
 
 
@@ -217,7 +218,7 @@ app.post('/complete-profile', async (req, res) => {
         const email = userData.email;
         const { firstName, lastName, password } = req.body;
         const userid = uuidv4();
-        await db.collection('users').insertOne({ email, password, firstName, lastName, userid });
+        await db.collection('users').insertOne({ email, password, firstName, lastName, userid, emailVerified: false });
         await db.collection('user_data').insertOne({ email, firstName, lastName, userid, questions: [], solutions: [] });
         const token = helper.generateToken();
         req.session.sessionId = token;
@@ -270,9 +271,10 @@ app.post("/user-data", async (req, res) => {
             const solutions = userData.solutions;
             for (let i = 0; i < questions.length; i++) {
 
-                const questionDetails = await db.collection("questions").findOne({ _id: new ObjectId(questions[i].questionId) }, { projection: { _id: 0, title: 1, solved: 1 } });
+                const questionDetails = await db.collection("questions").findOne({ _id: new ObjectId(questions[i].questionId) }, { projection: { _id: 0, title: 1, solved: 1, timeStamp: 1 } });
                 questions[i].title = questionDetails.title;
                 questions[i].solved = questionDetails.solved;
+                questions[i].timeStamp = questionDetails.timeStamp;
             }
             for (let i = 0; i < solutions.length; i++) {
 
@@ -283,16 +285,16 @@ app.post("/user-data", async (req, res) => {
                 solutions[i].upVotes = solutionDetails.upVotes;
                 solutions[i].downVotes = solutionDetails.downVotes;
             }
-            res.status(200).send({ ok: true, userData });
+            res.send({ ok: true, userData });
         }
         else {
-            res.status(404).send({ ok: false, errMessage: "User not found." });
+            res.send({ ok: false, errMessage: "User not found." }).status(404);
         }
 
     } catch (error) {
 
         console.log(error)
-        res.status(500).send({ ok: false, errMessage: "Internal Server Error" });
+        res.send({ ok: false, errMessage: "Internal Server Error" });
 
     }
 
@@ -341,7 +343,7 @@ app.post("/post-solution", async (req, res) => {
             const userid = user.userid;
             const userData = await db.collection("user_data").findOne({ userid });
             if (userData.solutions.includes(questionId)) {
-                res.send({ ok: false, errMessage: "Can't answer the same question multiple times" });
+                res.send({ ok: false, errMessage: "Sorry we allow just one answer per question by a particular user." });
             }
             else {
                 const result = await db.collection("solutions").insertOne({ questionId, author: userData.firstName + " " + userData.lastName, upVotes: 0, downVotes: 0, solution });
@@ -355,12 +357,12 @@ app.post("/post-solution", async (req, res) => {
 
         }
         else {
-            res.send({ ok: false, errMessage: "User not found" });
+            res.send({ ok: false, errMessage: "You need to sign in to post your solution." });
         }
 
     } catch (error) {
 
-        res.status(500).send({ ok: false, errMessage: "Internal Server Error" });
+        res.send({ ok: false, errMessage: "Internal Server Error" }).status(500);
 
     }
 })

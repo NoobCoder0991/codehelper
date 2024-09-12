@@ -2,6 +2,8 @@
 
 function createQuestionContainer(question) {
 
+    console.log(question)
+
     const tr = document.createElement('tr');
 
     // Create and append the <td> for question title
@@ -21,11 +23,10 @@ function createQuestionContainer(question) {
 
     // Create and append the <td> for action
     const actionTd = document.createElement('td');
-    const actionElement = document.createElement('action');
-    actionElement.textContent = "Answer";
+    const actionElement = document.createElement('div');
+    actionElement.textContent = getRelativeTime(question.timeStamp) + " ago";
     actionTd.appendChild(actionElement);
     tr.appendChild(actionTd);
-
 
     return tr;
 
@@ -37,7 +38,8 @@ function createMySolutionContainer(solution) {
 
     // Create and append the <td> for title
     const titleTd = document.createElement('td');
-    titleTd.textContent = solution.title;
+    titleTd.className = "question-title"
+    titleTd.innerHTML = `<a href='/question/id/${solution.questionId}'>${solution.title}</a>`;;
     tr.appendChild(titleTd);
 
     // Create and append the <td> for up votes
@@ -51,9 +53,9 @@ function createMySolutionContainer(solution) {
     tr.appendChild(downVotesTd);
 
     // Create and append the <td> for action
-    const actionTd = document.createElement('td');
-    actionTd.textContent = 'View';
-    tr.appendChild(actionTd);
+    // const actionTd = document.createElement('td');
+    // actionTd.textContent = 'View';
+    // tr.appendChild(actionTd);
 
     return tr;
 }
@@ -83,6 +85,10 @@ function createSolutionContainer(solution) {
     solutionContent.className = 'solution';
     solutionContent.innerHTML = processText(solution.solution);
 
+    const viewMore = document.createElement('div');
+    viewMore.className = 'view-more';
+    viewMore.innerHTML = '<i class="fas fa-chevron-down"></i>&nbsp;View more'
+
     const options = document.createElement('div');
     options.className = 'solution-options';
 
@@ -102,6 +108,19 @@ function createSolutionContainer(solution) {
     moreSolutions.className = 'more-solutions button';
     moreSolutions.innerHTML = '<i class="fas fa-solid fa-chevron-right"></i>';
 
+    viewMore.addEventListener('click', (event) => {
+        if (solutionContent.classList.contains("expanded")) {
+            solutionContent.classList.remove('expanded')
+            viewMore.innerHTML = '<i class="fas fa-chevron-down"></i>&nbsp;View More';
+        }
+        else {
+            solutionContent.classList.add('expanded')
+            viewMore.innerHTML = '<i class="fas fa-chevron-up"></i>&nbsp;View Less';
+        }
+    })
+
+    // solutionContent.appendChild(viewMore)
+
     options.appendChild(thumbsUp);
     options.appendChild(thumbsDown);
     options.appendChild(download);
@@ -110,6 +129,7 @@ function createSolutionContainer(solution) {
     // Append header, solution, and options to container
     container.appendChild(header);
     container.appendChild(solutionContent);
+    container.appendChild(viewMore)
     container.appendChild(options);
 
     return container;

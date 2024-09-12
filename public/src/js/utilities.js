@@ -72,7 +72,7 @@ function processText(text) {
     });
 
     // Process text as before, but only replace non-code block parts
-    text = escapeHTML(text)
+    // text = escapeHTML(text)
     text = text.replace(/\*\*(.*?)\*\*/g, '<b>$1</b>');
     text = text.replace(/\*(.*?)\*/g, '<i>$1</i>');
     text = text.replace(/__(.*?)__/g, '<u>$1</u>');
@@ -83,6 +83,7 @@ function processText(text) {
     text = text.replace(/\n/g, '<br>');
     text = text.replace(/ {2}/g, '&nbsp;&nbsp;');
     // Replace placeholders with highlighted code
+
     for (let index = 0; index < codeIndex; index++) {
         const code = codeBlocks[index];
         const highlightedCode = highlightCode(code);
@@ -185,4 +186,37 @@ function hideSuccessMessage() {
 
     const errorMessageContainer = document.getElementsByClassName('success-message')[0];
     errorMessageContainer.classList.add('hide');
+}
+
+function getRelativeTime(timeStamp) {
+
+
+    const currentTime = Math.floor(Date.now() / 1000); // Current time in seconds
+    const timeDifferenceInSeconds = currentTime - timeStamp; // Difference in seconds
+
+    const years = Math.floor(timeDifferenceInSeconds / 31536000);
+    const months = Math.floor(timeDifferenceInSeconds / 2592000);
+    const days = Math.floor(timeDifferenceInSeconds / 86400);
+    const hours = Math.floor(timeDifferenceInSeconds / 3600);
+    const minutes = Math.floor(timeDifferenceInSeconds / 60);
+
+    if (years >= 1) {
+        return years + " years";
+    }
+    if (months >= 1) {
+        return months + " months";
+    }
+    if (days >= 1) {
+        return days + " days";
+    }
+    if (hours >= 1) {
+        return hours + " hours";
+    }
+    if (minutes >= 1) {
+        return minutes + " minutes";
+    }
+
+    return timeDifferenceInSeconds + " seconds"
+
+
 }

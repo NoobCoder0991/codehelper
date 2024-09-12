@@ -92,3 +92,19 @@ function hideSuccessMessage() {
     const errorMessageContainer = document.getElementsByClassName('success-message')[0];
     errorMessageContainer.classList.add('hide');
 }
+
+
+descriptionInput.addEventListener('keydown', e => {
+    if (e.ctrlKey && e.key == 'b') {
+        e.preventDefault();
+        insertSpecial('**Bold**', 2, 6);
+    }
+    if (e.ctrlKey && e.key == 'i') {
+        e.preventDefault();
+        insertSpecial('*Italic*', 1, 7);
+    }
+    if (e.ctrlKey && e.key == 'u') {
+        e.preventDefault();
+        insertSpecial('__Underline__', 2, 11);
+    }
+})
