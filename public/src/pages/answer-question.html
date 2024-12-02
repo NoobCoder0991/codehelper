@@ -342,26 +342,26 @@
 
         <div class="editor">
             <div class="editor-tools">
-                <button class="editor-tool" onclick="insertSpecial('**Bold**',2,6 )">
+                <button class="editor-tool" onclick="insertSpecial('****',2 )">
                     <i class="fas fa-bold"></i>
                 </button>
-                <button class="editor-tool" onclick="insertSpecial('*Italic*',1,7)">
+                <button class="editor-tool" onclick="insertSpecial('**',1)">
                     <i class="fas fa-italic"></i>
 
                 </button>
-                <button class="editor-tool" onclick="insertSpecial('__Underline__',2,11)">
+                <button class="editor-tool" onclick="insertSpecial('____',2)">
                     <i class="fas fa-underline"></i>
 
                 </button>
-                <button class="editor-tool" onclick="insertSpecial('```Code```',3,7)">
+                <button class="editor-tool" onclick="insertSpecial('``````',3)">
                     <i class="fas fa-code"></i>
 
                 </button>
-                <button class="editor-tool" onclick="insertSpecial('[](Link)',3,7)">
+                <button class="editor-tool" onclick="insertSpecial('[]()',3)">
                     <i class="fas fa-link"></i>
 
                 </button>
-                <button class="editor-tool" onclick="insertSpecial('@@Special@@',2,9)">
+                <button class="editor-tool" onclick="insertSpecial('@@@@',2)">
                     special
 
                 </button>
@@ -478,15 +478,15 @@
     document.getElementsByClassName("editor-content")[0].addEventListener('keydown', e => {
         if (e.ctrlKey && e.key == 'b') {
             e.preventDefault();
-            insertSpecial('**Bold**', 2, 6);
+            insertSpecial('****', 2);
         }
         if (e.ctrlKey && e.key == 'i') {
             e.preventDefault();
-            insertSpecial('*Italic*', 1, 7);
+            insertSpecial('**', 1);
         }
         if (e.ctrlKey && e.key == 'u') {
             e.preventDefault();
-            insertSpecial('__Underline__', 2, 11);
+            insertSpecial('____', 2);
         }
     })
 

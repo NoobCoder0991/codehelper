@@ -26,7 +26,7 @@ InitializeDatabase().then(() => {
 
 }).catch(err => {
     console.error("Failed to initialize database", err);
-    process.exit(1);
+    // process.exit(1);
 
 })
 
@@ -118,7 +118,6 @@ app.post("/fetch-question", async (req, res) => {
     try {
         const { db, gfs } = getDatabase();
         const { questionId } = req.body;
-        console.log("Question id", questionId);
         const questionDetails = await db.collection("questions").findOne({ _id: new ObjectId(questionId) });
 
         const solutionIds = questionDetails.solutions;
@@ -146,7 +145,6 @@ app.post("/fetch-question-alone", async (req, res) => {
     try {
         const { db, gfs } = getDatabase();
         const { questionId } = req.body;
-        console.log("Question id", questionId);
         const questionDetails = await db.collection("questions").findOne({ _id: new ObjectId(questionId) });
 
         if (questionDetails) {

@@ -97,14 +97,14 @@ function hideSuccessMessage() {
 descriptionInput.addEventListener('keydown', e => {
     if (e.ctrlKey && e.key == 'b') {
         e.preventDefault();
-        insertSpecial('**Bold**', 2, 6);
+        insertSpecial('****', 2);
     }
     if (e.ctrlKey && e.key == 'i') {
         e.preventDefault();
-        insertSpecial('*Italic*', 1, 7);
+        insertSpecial('**', 1);
     }
     if (e.ctrlKey && e.key == 'u') {
         e.preventDefault();
-        insertSpecial('__Underline__', 2, 11);
+        insertSpecial('____', 2);
     }
 })

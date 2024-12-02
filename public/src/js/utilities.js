@@ -52,14 +52,7 @@ function processHTML(html) {
 }
 
 function processText(text) {
-    // Define a function to highlight code using highlight.js
-    function highlightCode(code) {
-        const hljs = window.hljs; // Ensure highlight.js is available in the window
-        if (hljs) {
-            return hljs.highlightAuto(code).value;
-        }
-        return code; // Fallback if highlight.js is not loaded
-    }
+    // Define a function to highlight code using highlight.j
 
     // Extract code blocks and store them in a map
     let codeBlocks = {};
@@ -145,18 +138,18 @@ window.addEventListener('paste', function (event) {
 });
 
 
-function insertSpecial(text, start, end) {
+function insertSpecial(text, start) {
     const selection = window.getSelection();
     const range = selection.getRangeAt(0);
 
     // Create a new text node with "**" and insert it at the caret position
-    const textNode = document.createTextNode(text);
+    const selectedText = range.toString();
+    const textNode = document.createTextNode(text.substring(0, start) + selectedText + text.substring(start));
     range.deleteContents(); // Optional: remove any selected text
     range.insertNode(textNode);
-
     // Move the caret between the two stars
     range.setStart(textNode, start); // Set the caret position between the stars
-    range.setEnd(textNode, end);   // Keep the end position the same as the start
+    range.setEnd(textNode, start + selectedText.length);   // Keep the end position the same as the start
 
     selection.removeAllRanges(); // Clear existing selections
     selection.addRange(range);   // Add the new range
@@ -219,4 +212,25 @@ function getRelativeTime(timeStamp) {
     return timeDifferenceInSeconds + " seconds"
 
 
+}
+
+function highlightCode(code) {
+    const hljs = window.hljs; // Ensure highlight.js is available in the window
+    if (hljs) {
+        return hljs.highlightAuto(code).value;
+    }
+    return code; // Fallback if highlight.js is not loaded
+}
+
+function splitStringInHalf(str) {
+    // Calculate the midpoint
+    const midpoint = Math.ceil(str.length / 2);
+
+    // Get the first half of the string
+    const firstHalf = str.substring(0, midpoint);
+
+    // Get the second half of the string
+    const secondHalf = str.substring(midpoint);
+
+    return { firstHalf, secondHalf };
 }
